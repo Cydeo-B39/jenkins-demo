@@ -1,0 +1,219 @@
+CICD
+
+CI (Continuous Integration) = Developers frequently combine their code and run automated tests to catch problems early.
+CD (Continuous Delivery) = Automatically prepare and deliver new versions of the app to staging or test environments, ready for release.
+Continuous Deployment = Like Continuous Delivery, but every change that passes tests is automatically deployed to production.
+
+DevOps
+
+   - It helps use reduce disconnection between QA - DEV - System Administrator
+   - It removes roadblock to make application release faster,reliable with minimal bugs
+   - It is intersection of DEVelopment and OPerationS
+
+   Devops Engineer
+   Cloud Engineer
+   System Administrator
+
+Q - What is infrastructure ?
+
+   - It is everything about pipeline that we need to have
+
+   - Environments
+   - Databases
+   - Jenkins (CICD tools )
+   - Application
+   - Data
+   - Trigger
+
+
+Q - Who will setup triggers and create infrastructure ?
+
+   - Devops team will do it
+
+Q - Why we are learning CICD ?
+
+   - Since we are the part of the team APP development we are gonna involve that process to make sure application working well by doing smoke / regression
+
+
+Q - Which tool Devops teams are using ?
+
+   - Jenkins
+   - Github Actions
+   - Gitlab
+   - Travis CI
+   - Circle CI
+   - Bamboo
+
+
+
+1- VCS (Github) --> TEST ENVIRONMENT
+
+   - Build --> With the hlep of build managements tools (maven,gradle,npm etc)
+               application will be packaged as jar , ear, war
+
+   - Code Analysis --> SonarQube has integration with Jenkins to check code quality, potential issue,security leaks and infinite loop
+
+   - Unit/Integration Test --> It is not our responsibility to do Unit and Integration Test.Developer will do it.It helps us to identify bugs in early stages.Test are doing in code level NOT functional
+
+
+2- TEST ENVIRONMENT --> STAGING ENVIRONMENT
+   (OUR ROLE IS STARTING IN THIS STAGE )
+
+
+   - Smoke
+         -> To make sure application MAIN functionalities are working well we are doing smoke test
+         -> In a nutshell --> Doing knock knock
+         -> to check application aup and running
+
+         -> Smoke Suite --> 10 to 50
+                        --> 10 min
+                        --> Time and size of test cases depends on application size
+
+
+   - Regression
+         -> To make sure ENTIRE APP functionalities are working well we are doing Regression Test
+         -> Assume you 400-500 regression test and it should around 2-3 hours
+
+   - Performance
+         -> It is not our job to do performance test
+         -> It is good to have dedicated team and dedicated env
+         -> most of the time they are using QA env
+         -> Popular tools are -> LOADRUNNER
+                              -> GATLING
+                              -> JMETER
+                              -> Grafana K6
+
+   - Deploy
+         -> It is making application for another environments
+
+
+3- STAGING ENVIRONMENT --> PRODUCTION ENVIRONMENTS
+
+   - STAGING (PRE PROD ) --> It is used to preapare applicaiton for production environment.One step before production
+
+   - UAT --> User Acceptance Test is DONE ususally from PO or dedicated team company
+
+   - RELEASE --> It is business decision to make application available for HAPPY customers
+
+
+-----------------------------------------------------
+
+PIPELINE
+
+-> It is a set of process that takes the code from VCS (Github),build,test and deploy application to real user in automated fashion
+
+
+Q- What is JENKINS role in this pipeline ?
+
+   - JENKINS is one the popular (open source tool) to manage pipeline.It takes over responsiblity of pipeline execution oce developer code ready in Github then will follow the process till the end for application development
+
+
+Continous Integration / Contiinous Delivery / Continous Deployment
+
+   - It is a methodology for applicaton jpurney from developers VCS to END USERS
+   - It is a method to frequently deliver applicaitons to customers by introducing automation into app development
+
+
+Continous Integration
+
+   -> It is process of automated build,unit/integration test and code analysisi
+
+   OUR ROLE
+      - DEPLOYMENT
+            - Smoke
+            - Regression needs to be triggered manually to run into JENKINS
+              to make sure application working well
+
+      - DAILY
+            - Smoke -> Schedule your smoke execuiton by using JENKINS at a certain time
+
+
+ Continous Delivery
+
+   -> It is automated build,execution of unit/integration test,execution of code analysis , doing functional test (smoke-regression) and deploying applicaiton to another env (staging env) automatically
+
+   -> Still in Continous delivery application relaase including human intervention
+
+   OUR ROLE
+      - DEPLOYMENT
+            - Smoke
+            - Regression These tests will be triggered from JENKINS with automated triggers.We need to maintain our framework and keep updated or test repository
+
+      - DAILY
+            - Smoke -> Schedule your smoke execuiton by using JENKINS at a certain time
+
+ Continous Deployment
+
+   -> It means taht every change that developers make goes thrpught the pipeline in autmated fashion if all steps working well application will be deployed to END-USERS
+
+   -> It is faster than Continous Integration and Continous Delivery.Because there is no human intervention in Continous Deployment
+
+
+Q -> What if any step fails ?
+
+   -> It wll turn back VCS to fic bugs that we catch
+
+   OUR ROLE
+      - DEPLOYMENT
+            - Smoke
+            - Regression These tests will be triggered from JENKINS with automated triggers.We need to maintain our framework and keep updated or test repository
+
+      - DAILY
+            - Smoke -> Schedule your smoke execuiton by using JENKINS at a certain time
+
+
+-----------------------------------------------------------------------------
+
+SERVERS
+
+  -> A server is a computer that provides service for another computer
+
+  PHYSICAL
+
+      - It is a hardware with more compute power and there is no monitor(UI)
+      - With the help virtualizaton software it allows to create virtual servers in it
+      and allows to create each virtual server their own OS - storage - CPU - applications
+
+
+  VIRTUAL
+
+      - It is a virtual representian of physical server
+      - Each Virtual server has thier own OS - storage - CPU - applications
+      - They are fully isolated between each other
+
+
+-----------------------------------------------------------------------------
+
+Servers in the cloud
+
+   Main Type of Cloud Computing
+
+      - On-prem --> Server in your local building.Each company needs to setup their own infrastructure by getting new hardwares and connecting to get more compute power
+
+
+      - IaaS-> Infrastructure as a Service
+
+         -> We created on of the IaaS which EC2 Virtual Server
+         -> We have already ready
+                  - Networking
+                  - Storage
+                  - Virtualization
+                  - Server
+         -> By using CYDEO AMI we installed
+
+                  - Applications
+                  - OS
+                  - Runtime env
+
+      - PaaS -> Product as Service
+
+         -> It is ready infrastructure for your product
+         -> User only needs to add application and its data
+
+
+      - SaaS -> Software as a Service
+
+         -> It is ready infrasture for your application
+         -> User dont need to add any data or application
+
+         - Slack -Discord -Gmail - Dropbox etc
