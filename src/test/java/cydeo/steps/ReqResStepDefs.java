@@ -18,16 +18,20 @@ public class ReqResStepDefs {
 
     @When("I send a GET request to {string}")
     public void i_send_a_get_request_to(String endpoint) {
+        System.out.println("Sending GET request to " + baseUrl + endpoint + "....");
         response = given()
                 .baseUri(baseUrl)
                 .when()
                 .get(endpoint)
                 .then()
                 .extract().response();
+        System.out.println("Status code " + response.statusCode() + " from GET request to " + baseUrl + endpoint);
     }
 
     @When("I send a POST request to {string} with body:")
     public void i_send_a_post_request_to_with_body(String endpoint, String body) {
+        System.out.println("Sending POST request to " + baseUrl + endpoint + "....");
+
         response = given()
                 .baseUri(baseUrl)
                 .headers("Content-Type", "application/json", "x-api-key", "reqres-free-v1")
@@ -36,6 +40,8 @@ public class ReqResStepDefs {
                 .post(endpoint)
                 .then()
                 .extract().response();
+        System.out.println("Status code " + response.statusCode() + " from POST request to " + baseUrl + endpoint);
+
     }
 
     @Then("the response status code should be {int}")
