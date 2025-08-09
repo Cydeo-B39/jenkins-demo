@@ -1,9 +1,5 @@
 CICD
 
-CI (Continuous Integration) = Developers frequently combine their code and run automated tests to catch problems early.
-CD (Continuous Delivery) = Automatically prepare and deliver new versions of the app to staging or test environments, ready for release.
-Continuous Deployment = Like Continuous Delivery, but every change that passes tests is automatically deployed to production.
-
 DevOps
 
    - It helps use reduce disconnection between QA - DEV - System Administrator

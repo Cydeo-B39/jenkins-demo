@@ -35,8 +35,8 @@ public class PracticePage {
     }
 
     public void login() {
-        System.out.println("USERNAME : " + System.getProperty("username"));
-        System.out.println("PASSWORD : " + System.getProperty("password"));
+        System.out.println("USERNAME : " + System.getenv("username"));
+        System.out.println("PASSWORD : " + System.getenv("password"));
         String username = ConfigurationReader.getProperty("username");
         String password = ConfigurationReader.getProperty("password");
 
