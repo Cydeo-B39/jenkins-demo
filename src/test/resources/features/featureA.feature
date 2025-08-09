@@ -1,4 +1,4 @@
-Feature: The application should be running
+Feature: Authorized User login tests
 
   @smoke @test
   Scenario: simple login

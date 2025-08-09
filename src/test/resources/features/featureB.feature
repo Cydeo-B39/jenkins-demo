@@ -1,5 +1,4 @@
-Feature: The application should be running
-
+Feature: The A/B Testing should be running
 
   @regression @test
 Scenario: navigate page
