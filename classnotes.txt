@@ -305,9 +305,22 @@ sending email or slack/teams channel.
 I create seperate Jenkins jobs for Smoke and regression tests to run across all environments and I use TAGS to filter my tests.
 ------------
 
+Jenkins Jobs setup for API Tests:
 
+1) Firstly we run api tests locally using maven command:
+I use @tags to filter cucumber scenarios to execute.
+Then run maven command from command line:
+mvn clean test -Dcucumber.filter.tags=@api
 
+2) Login to Jenkins (Cydeo/Cydeo)
+3) Create new Item/New job
+4) Give it a name: reqres-api-tests
+Select FreeStyle Project.
+FreeStyle Project is easier to set up and perfect for automation code.
+Pipeline needs Jenkins file pipeline code and DevOps teams use that for CI/CD
+5) We are on Configuration page of Jenkins Job:
 
+BREAK TILL 12:18 PM EST
 
 
 
