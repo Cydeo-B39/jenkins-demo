@@ -262,14 +262,20 @@ Yes, our company uses AWS EC2 servers and other services for whole Infrastructur
 We deploy applications into EC2 servers
 We use Amazon Relational Database Service (Amazon RDS): for our databases
 Also many other services.
+Automation code runs in Jenkins server that is in AWS EC2.
+
 ---------
 We have dedicated DEVOPS team to maintain our Infrastructure.
-
+---------
 Do you have experience with CI/CD?
 Yes, I use Jenkins jobs to schedule and trigger execution of my smoke and regression tests across all environments.
+smoke-tests-qa, smoke-tests-prod etc
+regression-qa,
+reqres-api-tests
+
 One of the acceptance criteria/Definion of done of Automated Tests, is that test MUST be able to RUN in Jenkins
 
-GitHub actions? I use Jenkins jobs since it is more flexible and has many plugin available.
+GitHub actions? In our team, We use Jenkins jobs since it is more flexible and has many plugin available.
 ------------
 
 How do you run your tests in Jenkins?
@@ -305,6 +311,9 @@ sending email or slack/teams channel.
 I create seperate Jenkins jobs for Smoke and regression tests to run across all environments and I use TAGS to filter my tests.
 ------------
 
+Maven command to run all tests:
+mvn test
+-------------
 Jenkins Jobs setup for API Tests:
 
 1) Firstly we run api tests locally using maven command:
@@ -320,11 +329,48 @@ FreeStyle Project is easier to set up and perfect for automation code.
 Pipeline needs Jenkins file pipeline code and DevOps teams use that for CI/CD
 5) We are on Configuration page of Jenkins Job:
 
-BREAK TILL 12:18 PM EST
+-> Source Code Management -> provide GitHub repository and branch name(master)
+-> Build Steps -> Add Build Step -> Maven:
+    Version -> M3
+    Goal -> test -Dcucumber.filter.tags=@api
+-> Post-build Actions -> Cucumber Reports
+-> SAVE
+-> Build Now to manually run the Jenkins Job
+
+Summary so far: We created Jenkins Job to run API tests.
+We provided GitHub repo and branch to pull
+We provided maven command as Build Step
+We asked for Cucumber HTML report as Post - build action to see results of execution
 
 
+SCHEDULING JOBS EXECUTION:
+Now we will schedule the execution, so that tests run automatically from Jenkins job on certain time.
 
+We will have flexibility of running manually anytime by clicking Build Now
+Also it will be scheduled.
 
+1) Open reqres-api-test job configuration
+2) Scroll down to Build Trigger -> Build periodically. Lets us schedule executions
+Scheduling also called CHRON JOB:
+https://crontab.guru/#0_6_*_*_*
+
+TZ=America/New_York
+0 6 * * *
+It means at 6 AM everyday new york time.
+
+==================
+Discord notifier Post build step.
+Normally companies, you will use either MS Teams or Slack.
+For practice, we are using Discord channel notification.
+
+When test execution is completed, it will send notification to that channel with the result. Pass or Fail.
+You can customize what needs to be sent over.
+===================
+
+When Jenkins job execution ends, it send a notification to Dedicated channel for our team. (Ms Teams, Slack etc)
+===================
+
+before doing Pull request, I run jenkins job with my branch in Github, if everything runs fine, I create A PR for review
 
 
 
