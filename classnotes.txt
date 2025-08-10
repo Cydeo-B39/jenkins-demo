@@ -1,5 +1,39 @@
-CICD
+CI/CD
 
+Continuous Integration / Continuous Delivery / Continuous Deployment
+
+Why as SDET do we ween to know Jenkins CICD tool?
+One of the requirements/DoD(Definition of done) for an Automation task/story in Jira is automated tests
+MUST run in Jenkins or other CI/CD tool.
+
+When we execute regression tests, or smoke tests,  we do not run them in our local computer.
+It is executed in Jenkins job and we can share report from jenkins with everyone.
+
+Also we have daily scheduled runs for Smoke tests in QA, DEV, Staging, PROD
+============================================================================
+BEFORE Jenkins:
+    - used to be lots of manual processes, and prod releases would be not so often. Mostly in Waterfall style.
+    - Development team -> write application code according to requirements, then compile and build the code and hand over to
+    Operation team. Tools For building -> Ant, Maven, Gradle.
+    - Operations team would take the Jar file and deploy to Application server(Tomcat, Webisphere etc)
+    - System admins -> to maintain servers for application, database etc
+    - most of above was a manual process
+    - it was a slow process that was difficult for frequent releases
+
+AFTER Jenkins:
+    - CI/CI process got automated with minimal manual steps
+    - Now DevOps team sets up Ci/CI pipelines(COMPILE, BUILD, TEST, DEPLOY) automatically
+    - Now we are able to ship/release more frequently.
+    - This is so important especially with Agile methodology where releases happen every 2 weeks or 4 weeks.
+    - And applications are now build using Microservices architecture(break down to seperate independent services
+
+============================================================================
+
+Environments:
+    Lower: Dev, QA, Stage/Preview
+    Prod: Production
+
+============================================================================
 DevOps
 
    - It helps use reduce disconnection between QA - DEV - System Administrator
@@ -11,18 +45,20 @@ DevOps
    System Administrator
 
 Q - What is infrastructure ?
-
+    - all the resources needed to deploy the application
    - It is everything about pipeline that we need to have
 
    - Environments
+   - Servers
    - Databases
    - Jenkins (CICD tools )
    - Application
    - Data
    - Trigger
 
+IAC -> Infrastructure As Code
 
-Q - Who will setup triggers and create infrastructure ?
+Q - Who will create infrastructure ?
 
    - Devops team will do it
 
@@ -35,10 +71,11 @@ Q - Which tool Devops teams are using ?
 
    - Jenkins
    - Github Actions
-   - Gitlab
+   - Gitlab CI
    - Travis CI
    - Circle CI
    - Bamboo
+   - AWS Codepipeline
 
 
 
@@ -87,7 +124,8 @@ Q - Which tool Devops teams are using ?
 
    - STAGING (PRE PROD ) --> It is used to preapare applicaiton for production environment.One step before production
 
-   - UAT --> User Acceptance Test is DONE ususally from PO or dedicated team company
+   - UAT --> User Acceptance Test is DONE ususally from PO or dedicated team company.
+   Go / No-Go call
 
    - RELEASE --> It is business decision to make application available for HAPPY customers
 
@@ -159,6 +197,10 @@ Q -> What if any step fails ?
 
 
 -----------------------------------------------------------------------------
+Cloud providers:
+Amazon AWS
+Microsoft Azure
+Google Cloud
 
 SERVERS
 
@@ -213,3 +255,71 @@ Servers in the cloud
          -> User dont need to add any data or application
 
          - Slack -Discord -Gmail - Dropbox etc
+=========================================================
+
+Do you have experience with AWS?
+Yes, our company uses AWS EC2 servers and other services for whole Infrastructure.
+We deploy applications into EC2 servers
+We use Amazon Relational Database Service (Amazon RDS): for our databases
+Also many other services.
+---------
+We have dedicated DEVOPS team to maintain our Infrastructure.
+
+Do you have experience with CI/CD?
+Yes, I use Jenkins jobs to schedule and trigger execution of my smoke and regression tests across all environments.
+One of the acceptance criteria/Definion of done of Automated Tests, is that test MUST be able to RUN in Jenkins
+
+GitHub actions? I use Jenkins jobs since it is more flexible and has many plugin available.
+------------
+
+How do you run your tests in Jenkins?
+Firstly I make sure tests run locally Ok with maven command(mvn test).
+Then I create Jenkins Job by specifying GitHub repository + Build steps with maven command + Post build actions for publishing html report,
+sending email or slack/teams channel.
+
+I create seperate Jenkins jobs for Smoke and regression tests to run across all environments and I use TAGS to filter my tests.
+------------
+
+Do you have experience with Docker containers and Kubernetes(K8s)?
+
+Our Infrasture uses Kubernetes(Amazon EKS) for deployment of applications.
+Our application is developed using Microservices architecture, and DevOps and Infrasture team builds those into Docker Images
+and they are deployed to Managed Kubernetes Service - Amazon EKS.
+
+Kubernetes helps to deploy our application to Kubernetes nodes(EC2).
+
+Kubernetes CLuster > Nodes (Application runs)
+
+------------
+
+Kafka is used for Data pipelines for
+------------
+
+Who sets up sets Jenkins jobs for smoke etc?
+I do set up Jenkins jobs
+How do you run your tests in Jenkins?
+Firstly I make sure tests run locally Ok with maven command(mvn test).
+Then I create Jenkins Job by specifying GitHub repository + Build steps with maven command + Post build actions for publishing html report,
+sending email or slack/teams channel.
+
+I create seperate Jenkins jobs for Smoke and regression tests to run across all environments and I use TAGS to filter my tests.
+------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
